@@ -4,7 +4,46 @@ Cmaban is a minimalist dialect of Lojban.
 Cmaban's primary design goal is to be simple.
 Its secondary design goal is to be understandable to speakers of other dialects.
 
-## Entities and roles
+## Entities and tags
+
+Let's translate "Jane eats an apple" into Cmaban:
+
+```plaintext
+fa la .djein. fi lo plise ku cu citka
+```
+
+Below is the (roughly) corresponding English translation of each part:
+
+```plaintext
+fa       la .djein. fi       lo plise ku citka
+[eater:] [Jane]     [eaten:] [apple]     [relation (explained later)]
+```
+
+Every Cmaban sentence consists of _entities_ and _tags_.
+
+The entities are the "things"--in this case:
+
+- `la .djein.` - Jane
+- `lo plise ku` - an apple
+
+A tag preceds an entity, and describes the entity's role in the sentence.
+In the example sentence, we have:
+
+- `fa` - Assigns the "eater" role.
+- `fe` - Assigns the "eaten" role.
+
+You should now understand every part of the given Cmaban sentence,
+except for `citka`.
+We will explain that in the next section.
+
+## Tag types
+
+There are 2 types of tags:
+
+- Tags with fixed roles
+- Tags with roles that depend on the specified _relation_
+
+## Cut
 
 All languages are made up of _sentences_.
 Every sentence involves one or more _entities_.
