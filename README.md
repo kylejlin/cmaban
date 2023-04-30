@@ -6,106 +6,156 @@ Its secondary design goal is to be understandable to speakers of other dialects.
 
 ## Entities and tags
 
-Let's translate "Jane eats an apple" into Cmaban:
+Let's translate "Jane runs to the market" into Cmaban:
 
 ```plaintext
-fa la .djein. fi lo plise ku cu citka
+fa la .djein. bajra seka'a lo zarci ku
 ```
 
 Below is the (roughly) corresponding English translation of each part:
 
 ```plaintext
-fa       la .djein. fi       lo plise ku citka
-[eater:] [Jane]     [eaten:] [apple]     [relation (explained later)]
+fa        la .djein. bajra
+[runner:] [Jane]     [relation (explained later)]
+
+seka'a         lo zarci ku
+[destination:] [market]
 ```
 
 Every Cmaban sentence consists of _entities_ and _tags_.
+Entities are the "things"--people, places, circumstances, etc.
+Tags describe the relationship between the entities.
+A tag describes the role of the entity that comes after it in the sentence.
 
-The entities are the "things"--in this case:
+In the above example, the entities are:
 
 - `la .djein.` - Jane
-- `lo plise ku` - an apple
+- `lo zarci ku` - the market
 
-A tag preceds an entity, and describes the entity's role in the sentence.
-In the example sentence, we have:
+The tags are:
 
-- `fa` - Assigns the "eater" role.
-- `fe` - Assigns the "eaten" role.
+- `fa` - Assigns the "runner" role.
+- `seka'a` - Assigns the "destination" role.
 
 You should now understand every part of the given Cmaban sentence,
-except for `citka`.
-We will explain that in the next section.
+except the word `bajra`.
+`bajra` is a _relation_.
+We will explain relations in a future section.
 
-## Tag types
+## Another example
 
-There are 2 types of tags:
-
-- Tags with fixed roles
-- Tags with roles that depend on the specified _relation_
-
-## Cut
-
-All languages are made up of _sentences_.
-Every sentence involves one or more _entities_.
-For example, consider the English sentence "Jane eats the apple because she's hungry".
-The entities are:
-
-- Jane
-- the apple
-- the fact that Jane is hungry
-
-Each entity has a _role_ in the sentence.
-In this case, the roles are, respectively:
-
-- Jane: the eater
-- the apple: the thing being eaten
-- the fact that Jane is hungry: the reason
-
-Observe that there are two kinds of sentence parts:
-
-1. words that describe _entities_. In the example sentence, we have:
-   - "Jane"
-   - "the apple"
-   - "she's hungry"
-2. words that describe the _role_ of each entity. In the example sentence, we have:
-   - "eats" - Describes the role of "Jane" (the eater) and "the apple" (the thing being eaten).
-   - "because" - Describes the role of "I'm hungry" (the reason).
-
-We will call phrases like "Jane" and "the apple" _entity phrases_.
-We will call phrases like "eats" and "because" _role phrases_.
-
-## My first Cmaban sentence
-
-Let's translate our sentence to Cmaban:
+Let's translate "The bird flies to the nest" into Cmaban:
 
 ```plaintext
-fa la .djein. fe lo plise ku citka ki du la .djein. xagji
+fa lo cipni ku vofli seka'a lo zdani ku
 ```
 
-The entities phrases are:
-
-- `la .jdein.` - Jane
-- `lo plise ku` - the apple
-- `du la .djein. xagji` - the fact that Jane is hungry
-
-The role phrases are:
-
-- `fa` - Assigns the "eater" role
-- `fe` - Assigns the "thing being eaten" role
-- `citka` - We'll explain this later
-- `ki` - Assigns the "reason" role
-
-Altogether:
+Once again, we'll break this down:
 
 ```plaintext
-fa       la .djein. fe       lo plise ku
-[eater:] [Jane]     [eaten:] [apple]
+fa       lo cipni ku vofli
+[flier:] [bird]      [relation (explained later)]
 
-citka
-[explained later]
-
-ki        du             la .djein.     xagji
-[reason:] [the fact that Jane        is hungry]
+seka'a         lo zdani ku
+[destination:] [nest]
 ```
 
-## What is `citka`?
+In the above example, the entities are:
+
+- `lo cipni ku` - the bird
+- `lo zdani ku` - the nest
+
+The tags are:
+
+- `fa` - Assigns the "flier" role.
+- `seka'a` - Assigns the "destination" role.
+
+You should now understand every part of the given Cmaban sentence,
+except the relation `vofli`.
+We will explain relations in the next section.
+
+## Relations
+
+You may have noticed that the tag `fa` assigned different roles
+in each of the two examples.
+In the first example, it assigned the "runner" role.
+In the second example, it assigned the "flier" role.
+
+This is because `fa` assigns roles based on the current sentence's _relation_.
+
+### Recall example 1:
+
+```plaintext
+fa        la .djein. bajra
+[runner:] [Jane]     [relation]
+
+seka'a         lo zarci ku
+[destination:] [market]
+```
+
+The relation is `bajra`.
+The definition of `bajra` is
+
+```plaintext
+x1 runs on surface x2 using limbs x3 with gait x4.
+```
+
+`fa` assigns the role of the current relation's `x1`.
+For `bajra`, the `x1` is the thing that runs, so `fa` assigns the role of "runner".
+
+### Recall example 2:
+
+```plaintext
+fa       lo cipni ku vofli
+[flier:] [bird]      [relation]
+
+seka'a         lo zdani ku
+[destination:] [nest]
+```
+
+The relation is `vofli`.
+The definition of `vofli` is:
+
+```plaintext
+x1 flies using propulsion means x2.
+```
+
+Since the `x1` of `vofli` is the thing that flies, `fa` assigns
+the role of "flier".
+
+### What about `x2`, `x3`, etc?
+
+You can use `fe`, `fi`, `fo`, and `fu` to
+assign the roles of `x2`, `x3`, `x4`, and `x5`, respectively.
+
+For example, let's say "The dog runs on the street using its hind legs".
+Translation:
+
+```plaintext
+fa lo gerku ku fe lo klaji ku fi lo rixtu'e ku bajra
+```
+
+Let's break this down:
+
+```plaintext
+fa        lo gerku ku
+[runner:] [dog]
+
+fe          lo klaji ku
+[surface:] [street]
+
+fi       lo rixtu'e ku bajra
+[limbs:] [hind legs]        [relation]
+```
+
+Recall that the definition of `bajra` is
+
+```plaintext
+x1 runs on surface x2 using limbs x3 with gait x4.
+```
+
+Thus:
+
+- `fa` assigns the "runner" role
+- `fe` assigns the "surface" role
+- `fi` assigns the "limbs" role.
